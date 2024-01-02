@@ -132,6 +132,16 @@ const playPreviousSong = () =>{
   }
 };
 
+const highlightCurrentSong = () => {
+  const playlistSongElements = document.querySelectorAll(".playlist-song");
+  const songToHighlight = document.getElementById(
+    `song-${userData?.currentSong?.id}`
+  );
+
+  playlistSongElements.forEach((songEl) => {
+    songEl.removeAttribute("aria-current");
+});
+
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song)=> {
@@ -167,5 +177,7 @@ playButton.addEventListener("click", () => {
 pauseButton.addEventListener("click", pauseSong);
 
 nextButton.addEventListener("click", playNextSong);
+
+previousButton.addEventListener("click", playPreviousSong);
 
 renderSongs(userData?.songs);
