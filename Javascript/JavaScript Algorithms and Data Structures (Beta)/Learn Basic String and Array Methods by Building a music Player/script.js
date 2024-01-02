@@ -129,13 +129,19 @@ const renderSongs = (array) => {
     })
     .join("");
 
+  playlistSongs.innerHTML = songsHTML;
+};
+
+const getCurrentSongIndex = () => userData?.songs.indexOf(userData.currentSong);
+
 playButton.addEventListener("click", () => {
-  if (userData?.currentSong === null) {
+    if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
-  }else {
+  } else {
     playSong(userData?.currentSong.id);
   }
 });
 
-playButton.addEventListener("click", () => { });
+pauseButton.addEventListener("click",  pauseSong);
+
 renderSongs(userData?.songs);
