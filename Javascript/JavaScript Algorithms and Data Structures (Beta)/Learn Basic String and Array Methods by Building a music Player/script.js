@@ -79,13 +79,11 @@ const allSongs = [
 ];
 
 const audio = new Audio();
-
 let userData = {
   songs: [...allSongs],
   currentSong: null,
   songCurrentTime: 0,
 };
-
 
 const playSong = (id) => {
   const song = userData?.songs.find((song) => song.id === id);
@@ -99,10 +97,10 @@ const playSong = (id) => {
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
-  
+
   highlightCurrentSong();
   setPlayerDisplay();
-  setPlayButtonAccessibleText()
+  setPlayButtonAccessibleText();
   audio.play();
 };
 
@@ -114,7 +112,6 @@ const pauseSong = () => {
 };
 
 const playNextSong = () => {
-
   if (userData?.currentSong === null) {
     playSong(userData?.songs[0].id);
   } else {
@@ -125,7 +122,7 @@ const playNextSong = () => {
   }
 };
 
-const playPreviousSong = () =>{
+const playPreviousSong = () => {
   if (userData?.currentSong === null) return;
   else {
   const currentSongIndex = getCurrentSongIndex();
@@ -139,11 +136,11 @@ const shuffle = () => {
   userData?.songs.sort(() => Math.random() - 0.5);
   userData.currentSong = null;
   userData.songCurrentTime = 0;
+
   renderSongs(userData?.songs);
   pauseSong();
   setPlayerDisplay();
   setPlayButtonAccessibleText();
-  
 };
 
 const setPlayerDisplay = () => {
@@ -155,6 +152,7 @@ const setPlayerDisplay = () => {
   playingSong.textContent = currentTitle ? currentTitle : "";
   songArtist.textContent = currentArtist ? currentArtist : "";
 };
+
 const highlightCurrentSong = () => {
   const playlistSongElements = document.querySelectorAll(".playlist-song");
   const songToHighlight = document.getElementById(
@@ -209,7 +207,7 @@ playButton.addEventListener("click", () => {
   }
 });
 
-pauseButton.addEventListener("click", pauseSong);
+pauseButton.addEventListener("click",  pauseSong);
 
 nextButton.addEventListener("click", playNextSong);
 
